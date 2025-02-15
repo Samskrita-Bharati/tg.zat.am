@@ -38,7 +38,8 @@ BODY {
 H1 {
   text-align: center;
   font-size: 14pt;
-  font-weight: normal;
+  font-weight: bold;
+color:tomato;
 }
 #grid {
   margin-left: auto;
@@ -46,7 +47,7 @@ H1 {
 }
 
 #grid TR TD{
-  border:1px solid white;
+  border:1px solid rgba(255,99,71,0.5);
   background: #999999;
   width: 40px;
   height: 40px;
@@ -55,6 +56,7 @@ H1 {
 
 #grid TR TD.clicked {
     background: #333333;
+font-weight:bold;
 }
 
 #grid TR TD.mine {
@@ -76,6 +78,7 @@ BUTTON {
 <br>
 <BUTTON onclick="generateGrid();">पुनः - Again</BUTTON>
 <br>
+<p style="font-weight:bold" id="msg"></p>
 <p>Clicks in this game = <span id='cc'>०</span></p>
 <p>High Score (Clicks saved) = <span id='hs'>०</span></p>
 <p>Fastest Fail (lost in clicks) = <span id='ls'>०</span></p>
@@ -95,6 +98,8 @@ var testMode = false; //Turn this variable to true to see where the mines are
 generateGrid();
 
 function generateGrid() {
+document.getElementById("msg").innerHTML="";
+document.getElementById("msg").style["color"]="black";
  hs=20;
  ls=0;
    document.getElementById("cc").innerHTML=Sanscript.t(String(ls),'iast', 'devanagari');
@@ -152,8 +157,9 @@ function checkLevelCompletion() {
       }
   }
   if (levelComplete) {
-    alert("जयः 🙂 ! Done in "+parseInt(20-hs)+" ! \n Clicks saved = " +hs );
-
+    //alert("जयः 🙂 in "+parseInt(20-hs)+" ! \n Clicks saved = " +hs );
+document.getElementById("msg").innerHTML="जयः 🙂 in "+parseInt(20-hs)+" ! \n Clicks saved = " +hs ;
+document.getElementById("msg").style["color"]="blue";
     hscs= (localStorage["tgzmss5hs"]) ? localStorage["tgzmss5hs"] : 0;
     localStorage["tgzmss5hs"]=Math.max(hs,hscs);
     document.getElementById("hs").innerHTML=Sanscript.t(String(Math.max(hs,hscs)),'iast', 'devanagari');
@@ -189,7 +195,9 @@ cell.style.backgroundColor="";
     localStorage["tgzmss5ls"]=Math.min(ls,lscs);
     document.getElementById("ls").innerHTML=Sanscript.t(String(Math.min(ls,lscs)),'iast', 'devanagari');
        revealMines("#FF0000");
-	   alert("पराजयः  🙁 ! in clicks = "+ls);
+	   //alert("पराजयः  🙁 ! in clicks = "+ls);
+document.getElementById("msg").innerHTML="पराजयः  🙁 in "+ls+" click(s)";
+document.getElementById("msg").style["color"]="red";
   } else {
          cell.className="clicked";
   
