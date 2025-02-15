@@ -1,0 +1,21 @@
+{
+  "name": "२०४८ = 2048",
+  "short_name": "२०४८ = 2048",
+  "icons": [
+    {
+      "src": "2048192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "2048512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
