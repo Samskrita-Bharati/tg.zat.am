@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>८ समस्या - 8 Puzzle</title>
+<link rel="icon" type="image/png" href="8p96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="8p.svg" />
+<link rel="shortcut icon" href="8p.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="8pa.png" />
+<meta name="apple-mobile-web-app-title" content="८-समस्या" />
+<link rel="manifest" href="8p.webmanifest" />
+<!-- Facebook Meta Tags -->
+<meta property="og:title" content="८ समस्या - 8 Puzzle">
+<meta property="og:description" content="8 Puzzle in Sanskrit">
+<meta property="og:image" content="https://tg.zat.am/8p/8p191.png">
+<meta property="og:url" content="https://tg.zat.am/8p/">
+<meta property="og:site_name" content="tg.zat.am">
+<meta property="og:type" content="website">
+        
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="८ समस्या - 8 Puzzle">
+<meta name="twitter:title" content="८ समस्या - 8 Puzzle">
+<meta name="twitter:description" content="8 Puzzle in Sanskrit">
+<meta name="twitter:image" content="https://tg.zat.am/8p/8p191.png">
+
+	<script src="https://cdn.jsdelivr.net/npm/@sanskrit-coders/sanscript@1.1.0/sanscript.min.js"></script>
+	<style>
+::selection {background: transparent;}
+p{margin: 0; font: 12px/150% Arial; text-align: center; color: #888;}
+p a{color: #888;}
+
+#controls{text-align: center;}
+#controls button{
+	cursor: pointer;
+	outline: none;	
+	padding: 10px 20px;
+	margin: 25px 2px;
+	border: 0;
+	border-radius: 4px;
+	background: tomato;
+	font: bold 14px Arial;
+	text-align: center;
+	text-transform: uppercase;
+	text-shadow: -1px -1px 0 rgba(0,0,0, 0.5);
+	color: #fff;
+}
+#controls button:hover{background: orange;}
+
+#puzzle{
+	position: relative;
+	width: 245px;
+	height: 245px;
+	margin: 0 auto;
+	margin-top: 80px;
+	border: 8px solid yellow;
+	border-radius: 4px;
+}
+#puzzle span{
+	position: absolute;
+	display: block;
+	width: 80px;
+	height: 80px;
+	border-radius: 4px;
+}
+#puzzle span.number{
+	cursor: pointer;
+	font: bold 36px/80px Arial;
+	text-align: center;
+	text-shadow: -1px -1px 0 rgba(0,0,0, 0.5);
+	color: #fff;
+}
+#puzzle span.empty{background: transparent;}
+#puzzle span.number.light{background: orange;}
+#puzzle span.number.dark{background: tomato;}
+
+#puzzle.animate span{
+	-webkit-transition: 0.15s left, 0.15s top;
+ 	transition: 0.15s left, 0.15s top;
+}
+
+	</style>
+</head>
+<body>
+	<div id="puzzle"></div>
+	<div id="controls">	<br>
+	<span id="moves" style="font-weight:bold"></span><br>
+		<button id="scramble">Scramble</button>
+	</div>
+	<script>
+var url = new URL(location.href);
+var playerid = url.searchParams.get("id");
+var cid = url.searchParams.get("cid");
+var mid = url.searchParams.get("mid");
+(function(){
+	var moves=0;
+	var state = 1;
+	var puzzle = document.getElementById('puzzle');
+
+document.getElementById('moves').innerHTML=Sanscript.t((moves).toString(),'iast', 'devanagari');
+
+	// Creates solved puzzle
+	solve();
+	scramble();
+	// Listens for click on puzzle cells
+	puzzle.addEventListener('click', function(e){
+		if(state == 1){
+			// Enables sliding animation
+			puzzle.className = 'animate';
+			shiftCell(e.target);
+		}
+	});
+	
+	// Listens for click on control buttons
+	//document.getElementById('solve').addEventListener('click', solve);
+	document.getElementById('scramble').addEventListener('click', scramble);
+
+	/**
+	 * Creates solved puzzle
+	 *
+	 */
+	function solve(){
+		
+		if(state == 0){
+			return;
+		}
+		
+		puzzle.innerHTML = '';
+		
+		var n = 1;
+		for(var i = 0; i < 3; i++){
+			for(var j = 0; j < 3; j++){
+				var cell = document.createElement('span');
+				cell.id = 'cell-'+i+'-'+j;
+				cell.style.left = (j*80+1*j+1)+'px';
+				cell.style.top = (i*80+1*i+1)+'px';
+				
+				if(n <= 8){
+					cell.classList.add('number');
+					cell.classList.add((i%2==0 && j%2>0 || i%2>0 && j%2==0) ? 'dark' : 'light');
+					cellnum=n++;
+					cell.title = (cellnum).toString();
+					cell.innerHTML = Sanscript.t((cellnum).toString(),'iast', 'devanagari');
+//					cell.innerHTML = (n++).toString();
+//
+				} else {
+					cell.className = 'empty';
+				}
+				
+				puzzle.appendChild(cell);
+			}
+		}
+		
+	}
+
+	/**
+	 * Shifts number cell to the empty cell
+	 * 
+	 */
+	function shiftCell(cell){
+		
+		// Checks if selected cell has number
+		if(cell.clasName != 'empty'){
+			
+			// Tries to get empty adjacent cell
+			var emptyCell = getEmptyAdjacentCell(cell);
+			
+			if(emptyCell){
+				// Temporary data
+				var tmp = {style: cell.style.cssText, id: cell.id};
+				
+				// Exchanges id and style values
+				cell.style.cssText = emptyCell.style.cssText;
+				cell.id = emptyCell.id;
+				emptyCell.style.cssText = tmp.style;
+				emptyCell.id = tmp.id;
+				if(state == 1){
+				moves++;
+document.getElementById('moves').innerHTML=Sanscript.t((moves).toString(),'iast', 'devanagari');
+					// Checks the order of numbers
+					checkOrder();
+				}
+			}
+		}
+		
+	}
+
+	/**
+	 * Gets specific cell by row and column
+	 *
+	 */
+	function getCell(row, col){
+	
+		return document.getElementById('cell-'+row+'-'+col);
+		
+	}
+
+	/**
+	 * Gets empty cell
+	 *
+	 */
+	function getEmptyCell(){
+	
+		return puzzle.querySelector('.empty');
+			
+	}
+	
+	/**
+	 * Gets empty adjacent cell if it exists
+	 *
+	 */
+	function getEmptyAdjacentCell(cell){
+		
+		// Gets all adjacent cells
+		var adjacent = getAdjacentCells(cell);
+		
+		// Searches for empty cell
+		for(var i = 0; i < adjacent.length; i++){
+			if(adjacent[i].className == 'empty'){
+				return adjacent[i];
+			}
+		}
+		
+		// Empty adjacent cell was not found
+		return false;
+		
+	}
+
+	/**
+	 * Gets all adjacent cells
+	 *
+	 */
+	function getAdjacentCells(cell){
+		
+		var id = cell.id.split('-');
+		
+		// Gets cell position indexes
+		var row = parseInt(id[1]);
+		var col = parseInt(id[2]);
+		
+		var adjacent = [];
+		
+		// Gets all possible adjacent cells
+		if(row < 2){adjacent.push(getCell(row+1, col));}			
+		if(row > 0){adjacent.push(getCell(row-1, col));}
+		if(col < 2){adjacent.push(getCell(row, col+1));}
+		if(col > 0){adjacent.push(getCell(row, col-1));}
+		
+		return adjacent;
+		
+	}
+	
+	/**
+	 * Chechs if the order of numbers is correct
+	 *
+	 */
+	function checkOrder(){
+		
+		// Checks if the empty cell is in correct position
+		if(getCell(2, 2).className != 'empty'){
+			return;
+		}
+	
+		var n = 1;
+		// Goes through all cells and checks numbers
+		for ( var i = 0; i < 3; i++){
+			for ( var j = 0; j < 3; j++){
+				if ( n <= 8 && getCell(i, j).innerHTML != Sanscript.t(n.toString(),'iast', 'devanagari') ){
+					// Order is not correct
+					return;
+				}
+				n++;
+			}
+		}
+		
+		// Puzzle is solved, offers to scramble it
+		alert('उत्तमम् !  You did it in '+ Sanscript.t(moves.toString(),'iast', 'devanagari') +' moves ! \nClick "Scramble" to try the puzzle पुनः ');
+document.getElementById("moves").innerHTML='उत्तमम् !  Done in '+ Sanscript.t(moves.toString(),'iast', 'devanagari') +' moves !';
+state=0;
+    var xmlhttp = new XMLHttpRequest();
+    var url = "https://khelaa.code4samskritam.workers.dev/highscore?score=" + moves + "&id=" + playerid+"&cid="+cid+"&mid="+mid;
+    xmlhttp.onreadystatechange = function() {
+              };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+	}
+
+	/**
+	 * Scrambles puzzle
+	 *
+	 */
+	function scramble(){
+	 moves = 0;state=1;
+document.getElementById('moves').innerHTML=Sanscript.t((moves).toString(),'iast', 'devanagari');
+		if(state == 0){
+			return;
+		}
+		
+		puzzle.removeAttribute('class');
+		state = 0;
+		
+		var previousCell;
+		var i = 1;
+		var interval = setInterval(function(){
+			if(i <= 100){
+				var adjacent = getAdjacentCells(getEmptyCell());
+				if(previousCell){
+					for(var j = adjacent.length-1; j >= 0; j--){
+						if(adjacent[j].innerHTML == previousCell.innerHTML){
+							adjacent.splice(j, 1);
+						}
+					}
+				}
+				// Gets random adjacent cell and memorizes it for the next iteration
+				previousCell = adjacent[rand(0, adjacent.length-1)];
+				shiftCell(previousCell);
+				i++;
+			} else {
+				clearInterval(interval);
+				state = 1;
+			}
+		}, 5);
+
+	}
+	
+	/**
+	 * Generates random number
+	 *
+	 */
+	function rand(from, to){
+//xy=Math.floor(Math.random() * (to - from + 1)) + from;
+	//	return Sanscript.t(String(xy),'iast', 'devanagari');
+return Math.floor(Math.random() * (to - from + 1)) + from;
+	}
+
+}());
+</script>
+</body>
+</html>

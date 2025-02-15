@@ -1,0 +1,21 @@
+{
+  "name": "८-समस्या",
+  "short_name": "8-puzzle",
+  "icons": [
+    {
+      "src": "8p191.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "8p512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "display": "standalone"
+}
