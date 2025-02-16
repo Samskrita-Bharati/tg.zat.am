@@ -101,7 +101,7 @@
       } else {
         H = h;
       }
-      $(".timer").text(H + " : " + M + " : " + S);
+      $(".timer").text(Sanscript.t(String(H),'iast', 'devanagari') + " : " + Sanscript.t(String(M),'iast', 'devanagari') + " : " + Sanscript.t(String(S),'iast', 'devanagari'));
     }
 
 
@@ -159,7 +159,7 @@
 
     $('.next-level').click(function () {
       level++;
-      $('.level').val(level);
+      $('.level').val(Sanscript.t(String(level),'iast', 'devanagari'));
       $('.disk-num').text(level + 2);
       handle();
       $('.lock').show(0);
