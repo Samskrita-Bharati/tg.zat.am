@@ -84,7 +84,8 @@ BUTTON {
 <p>Fastest Fail (lost in clicks) = <span id='ls'>०</span></p>
 <script>
 var url = new URL(location.href);
-document.getElementById("urll").innerHTML=url;
+var urls = location.search;
+document.getElementById("urll").innerHTML=urls;
 var playerid = url.searchParams.get("id");
 var hscs= (localStorage["tgzmss5hs"]) ? localStorage["tgzmss5hs"] : 0;
 var lscs= (localStorage["tgzmss5ls"]) ? localStorage["tgzmss5ls"] : 20;
