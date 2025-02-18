@@ -27,6 +27,7 @@
 <meta name="twitter:image" content="https://tg.zat.am/mss/mss169t.png">
 
 <script src="https://cdn.jsdelivr.net/npm/@sanskrit-coders/sanscript@1.1.0/sanscript.min.js"></script>
+<script src="https://telegram.org/js/games.js"></script>
 <style>
 BODY {
   background: black;
@@ -72,7 +73,6 @@ BUTTON {
 </head>
 <body>
 <H1>💣 संस्कृतम्  Minesweeper 🧹</H1>
-<p id="urll">test</p>
 <table id=grid>
 </table>
 <br>
@@ -81,11 +81,12 @@ BUTTON {
 <p style="font-weight:bold" id="msg"></p>
 <p>Clicks in this game = <span id='cc'>०</span></p>
 <p>High Score (Clicks saved) = <span id='hs'>०</span></p>
+<button onclick="TelegramGameProxy.shareScore()">Share score</button>
 <p>Fastest Fail (lost in clicks) = <span id='ls'>०</span></p>
 <script>
 var url = new URL(location.href);
-var urls = location.search;
-document.getElementById("urll").innerHTML=urls;
+//var urls = location.search;
+//document.getElementById("urll").innerHTML=urls;
 var playerid = url.searchParams.get("id");
 var hscs= (localStorage["tgzmss5hs"]) ? localStorage["tgzmss5hs"] : 0;
 var lscs= (localStorage["tgzmss5ls"]) ? localStorage["tgzmss5ls"] : 20;
