@@ -73,21 +73,21 @@ BUTTON {
 </head>
 <body>
 <H1>💣 संस्कृतम्  Minesweeper 🧹</H1>
-<p id="urls">testing ..</p>
+<!--<p id="urls">testing ..</p>-->
 <table id=grid>
 </table>
 <br>
 <BUTTON onclick="generateGrid();">पुनः - Again</BUTTON>
 <br>
-<p style="font-weight:bold" id="msg"></p>
 <p>Clicks in this game = <span id='cc'>०</span></p>
+<p style="font-weight:bold" id="msg"></p>
+<button id="sb" onclick="TelegramGameProxy.shareScore()" style="display:none">Share score</button>
 <p>High Score (Clicks saved) = <span id='hs'>०</span></p>
-<button onclick="TelegramGameProxy.shareScore()">Share score</button>
 <p>Fastest Fail (lost in clicks) = <span id='ls'>०</span></p>
 <script>
 var url = new URL(location.href);
-var urls = location.search;
-document.getElementById("urls").innerHTML=urls;
+//var urls = location.search;
+//document.getElementById("urls").innerHTML=urls;
 var playerid = url.searchParams.get("id");
 var hscs= (localStorage["tgzmss5hs"]) ? localStorage["tgzmss5hs"] : 0;
 var lscs= (localStorage["tgzmss5ls"]) ? localStorage["tgzmss5ls"] : 20;
@@ -102,6 +102,7 @@ var testMode = false; //Turn this variable to true to see where the mines are
 generateGrid();
 
 function generateGrid() {
+document.getElementById("sb").style.display="none";
 document.getElementById("msg").innerHTML="";
 document.getElementById("msg").style["color"]="black";
  hs=20;
@@ -162,6 +163,7 @@ function checkLevelCompletion() {
   }
   if (levelComplete) {
     //alert("जयः 🙂 in "+parseInt(20-hs)+" ! \n Clicks saved = " +hs );
+document.getElementById("sb").style.display="initial";
 document.getElementById("msg").innerHTML="जयः 🙂 in "+parseInt(20-hs)+" ! \n Clicks saved = " +hs ;
 document.getElementById("msg").style["color"]="blue";
     hscs= (localStorage["tgzmss5hs"]) ? localStorage["tgzmss5hs"] : 0;
@@ -170,12 +172,12 @@ document.getElementById("msg").style["color"]="blue";
     revealMines("#0000FF");
 
     // Submit highscore to Telegram
-    var xmlhttp = new XMLHttpRequest();
-    var url = "https://manynodejs-production.up.railway.app/highscore/" + hs + "?id=" + playerid;
-    xmlhttp.onreadystatechange = function() {
-              };
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
+   // var xmlhttp = new XMLHttpRequest();
+   // var url = "https://manynodejs-production.up.railway.app/highscore/" + hs + "?id=" + playerid;
+   // xmlhttp.onreadystatechange = function() {
+   //           };
+   // xmlhttp.open("GET", url, true);
+   // xmlhttp.send();
   }
 }
 function markCell(cell) {
