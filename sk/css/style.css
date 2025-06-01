@@ -1,0 +1,644 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Syne:wght@400;500;600&display=swap");
+
+/*=============== Reusable CSS ===============*/
+:root {
+    /*
+    --theme-color: rgba(81, 130, 144,1);
+    --theme-color-dark: rgba(71, 120, 134,1);
+    */
+    --theme-color: rgb(95 197 95);
+    --theme-color-dark: rgba(51 157 51);
+    --rose-gold-color: rgb(72, 43, 47, 1);
+    --rose-gold-color-dark: rgba(82,53,57,1);
+    --correct-color: rgb(95 197 95);
+    --correct-color-dark: rgb(51 157 51);
+    --almost-correct-color: rgba(255,198,84,1);
+    --almost-correct-color-dark: rgba(238,149,49,1);
+
+    --rainbow-gradient: linear-gradient(
+        to right,
+        rgba(255, 0, 0, 1) 0%,
+        rgba(255, 154, 0, 1) 10%,
+        rgba(208, 222, 33, 1) 20%,
+        rgba(79, 220, 74, 1) 30%,
+        rgba(63, 218, 216, 1) 40%,
+        rgba(47, 201, 226, 1) 50%,
+        rgba(28, 127, 238, 1) 60%,
+        rgba(95, 21, 242, 1) 70%,
+        rgba(186, 12, 248, 1) 80%,
+        rgba(251, 7, 217, 1) 90%,
+        rgba(255, 0, 0, 1) 100%
+    );
+}
+
+@keyframes bgwave {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+@keyframes wave {
+    0%, 60%, 100% {
+      transform: translateY(0);
+    }
+    30% {
+      transform: translateY(-15px);
+    }
+}
+
+@keyframes moveUpDown {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(5px);
+    }
+}
+
+@keyframes slideInFromBottom {
+    from {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes kineticPopIn {
+    0% {
+      transform: scale(0) translateX(-100%);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1) translateX(0);
+      opacity: 1;
+    }
+}
+
+.centered-flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 30px 0 30px;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}
+
+body{
+    font-family: nunito;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+h2{
+    margin-top: 10px;
+}
+
+/*=============== HEADER ===============*/
+
+.all__container{
+    display: flex;
+    flex-direction: column;
+    /* height: 700px; */
+    width: 700px;
+    background-color: rgb(238, 238, 238); 
+    box-shadow: 0 12px 24px rgb(230, 225, 225); 
+    transition: height 0.4s, width 0.4s ;  
+}
+
+
+.header{
+
+    color: white;
+    background-color:var(--almost-correct-color);
+    display: flex;
+    justify-content: space-between;
+}
+
+.header__menu, .header__how__to{
+    color: white;
+    margin: 30px 20px 30px;
+    background-color: var(--almost-correct-color-dark);
+    height: 40px;
+    width: 40px;
+    border-radius: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight:1000;
+}
+
+.header>h1{
+    font-size: 40px;
+    margin:25px 100px 25px;
+}
+
+.header__item{
+    cursor: pointer;
+}
+
+.help__button{
+    cursor:pointer;
+}
+
+/*=============== NAVIGATION BAR ===============*/
+
+.nav-content {
+    display: none; 
+    position:absolute;
+    z-index: 1000;
+    background-color: rgb(238, 238, 238);
+    padding: 20px;
+    height: 660px;
+    width: 200px;
+    animation: slideInFromLeft 0.5s ease-out, opacity 0.5s ease-out;
+}
+
+.nav-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-list li {
+    margin: 10px 0;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+}
+
+.nav-heading{
+    color: black;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*=============== How to section ===============*/
+
+.how-to-play-modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    transition:  opacity 3s ease-out
+}
+
+.how-to-play-content {
+    color: black;
+    font-size: 1.25rem;
+    background-color: #fefefe;
+    margin: 5% 15%;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%;
+    animation: slideInFromBottom 0.5s ease-out;
+}
+
+/*=============== Previous Puzzles ===============*/
+.puzzle__list__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}
+
+.puzzle__list__para {
+    text-align: center;
+    width: 100%;
+}
+
+.puzzle__list {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+.puzzle__link {
+    text-align: center;
+    display: block;
+    min-height: 50px;
+    margin: 0.5rem 0; 
+    padding: 0.75rem  1rem 0.5rem; 
+    background-color: lightgray;
+    width: 100%; 
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+/*=============== MAIN ===============*/
+
+.main__container{
+    align-self: center;
+    height: 500px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y: visible;
+}
+
+.main__container>h3{
+    color: gray;
+}
+
+.grid__container{
+    display: grid;
+    grid-template-columns: repeat(5,auto);
+    gap: 10px;
+    row-gap: 15px;
+}
+
+
+/*=============== FOOTER ===============*/
+.footer__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.swap__container{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    color: gray;
+    margin-top: 40px;
+}
+
+.swap__remainin__number{
+    color: black;
+}
+
+.message__container{
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+    color: black;
+    margin-bottom: 20px;
+}
+.message{
+    animation: moveUpDown 0.7s ease-in-out infinite;
+    transition: display 0.7s;
+}
+
+.button__row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.retry__button, .trymore__button, .share__button {
+    flex: 1;
+    margin: 5px;
+}
+
+.retry__button{
+    color: white;
+    height: 50px;
+    max-width: 150px;
+    margin: 10px;
+    background-color: var(--theme-color);
+    box-shadow: 5px 5px 0 var(--theme-color-dark);
+    border-radius: 7.5%;  
+    border: none;
+    font-family: 'nunito';
+    font-size: 1.5rem;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.trymore__button{
+    color: white;
+    height: 50px;
+    width: 150px;
+    margin: 10px;
+    background-color: var(--theme-color);
+    box-shadow: 5px 5px 0 var(--theme-color-dark);  
+    border-radius: 7.5%; 
+    border: none;
+    font-family: nunito;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    cursor: pointer; 
+}
+
+.buymeacoffee__button {
+    display: inline-block;
+    height: 50px; 
+    cursor: pointer;
+    border-radius: 7.5%;
+}
+
+.coffee__png{
+    box-shadow: 5px 5px 0 var(--almost-correct-color-dark);
+}
+
+.coffee__container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.share__container {
+    text-align: center;
+}
+
+.share__button{
+    color: white;
+    height: 50px;
+    margin: 10px;
+    flex:1;
+    background-color: var(--theme-color);
+    box-shadow: 5px 5px 0 var(--theme-color-dark);
+    border-radius: 7.5%;  
+    border: none;
+    font-family: 'nunito';
+    font-size: 1.5rem;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.share__icon{
+    display: inline-flex;
+    gap: 0.5rem;
+}
+
+.copy__message {
+    display: none;
+    text-align: center;
+    margin-bottom: 10px;
+    color: gray;
+    font-size: 1rem;
+}
+
+.message__box {
+    width: 100%;
+    padding: 20px 0px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.message__box--win {
+    background-color: var(--theme-color);
+    color: white;
+}
+
+.message__box--lose {
+    background-color: gray;
+    color: white;
+}
+
+/*=============== BUTTONS CSS ===============*/
+
+.button__css{
+    color: white;
+    height: 75px;
+    width: 80px;
+    border: none;
+    border-radius: 15%;
+    font-family: nunito;
+    font-size: 3em;
+    font-weight: bolder; 
+}
+
+.button{
+    background-color: lightgray;
+    box-shadow: 0 5px 0 rgb(187, 187, 187);   
+}
+
+.button__container_disabled{
+    border: none;
+}
+
+.button__disabled{
+    display: none;
+}
+
+button:hover{
+    cursor: grab;
+}
+
+.button__container{
+    height: 80px;
+    width: 80px;
+    border: solid 1px gray ;
+    border-radius: 15%;
+}
+
+.correct__button{
+    background-color: var(--correct-color);
+    box-shadow: 0 5px 0 var(--correct-color-dark);    
+}
+
+.almostcorrect__button{
+    background-color: var(--almost-correct-color);
+    box-shadow: 0 5px 0 var(--almost-correct-color-dark);     
+}
+
+.dragging{
+    opacity: 0.1;   
+    box-shadow: none;
+    height: 80px;
+    width: 80px 
+}
+
+.loser__wrong__button{
+    background-color: rgb(50, 50, 50);
+    box-shadow: 0 5px 0 rgb(85, 85, 85);  
+    animation: moveUpDown 0.7s ease-in-out infinite;
+    transition: background-color .7s, box-shadow .7s;  
+}
+
+.loser__correct__button{
+    background-color: rgb(100, 100, 100);
+    box-shadow: 0 5px 0 rgb(135, 135, 135);  
+    transition: background-color .7s, box-shadow .7s;
+}
+
+.winner__button{
+    height:80px;
+    background: var(--rainbow-gradient);
+    background-size: 1500% 1500%; 
+    animation: bgwave 3s ease-in-out infinite, wave 1s ease-in-out infinite;
+    transition: background-color 0.4s, box-shadow 0.4s, height 0.4s;
+    box-shadow: none !important;   
+}
+
+#grid-button1, #grid-button6, #grid-button11, #grid-button16, #grid-button21 {
+    animation-delay: 0s;
+  }
+  
+  #grid-button2,#grid-button7, #grid-button12,#grid-button17, #grid-button22 {
+    animation-delay: 0.1s;
+  }
+  
+  #grid-button3, #grid-button8, #grid-button13, #grid-button18, #grid-button23 {
+    animation-delay: 0.2s;
+  }
+  
+  #grid-button4,#grid-button9, #grid-button14,#grid-button19, #grid-button24 {
+    animation-delay: 0.3s;
+  }
+  
+  #grid-button5, #grid-button10, #grid-button15, #grid-button20, #grid-button25 {
+    animation-delay: 0.4s;
+  }
+
+
+/*=============== MEDIA QUERY ===============*/
+
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+ .all__container{
+    width: 600px;
+    transition: width 0.4s;
+ }
+ .header>h1{
+    margin:25px 50px 25px;
+    transition: margin 0.4s;
+ }
+ 
+}
+
+@media only screen and (max-width: 600px) {
+  .all__container{
+    width: 360px;
+    height: auto;
+    transition: width 0.4s;
+ }
+ .header{
+    justify-content: center;
+ }
+ .header>h1{
+    font-size: 25px;
+    margin:25px 20px 30px;
+    transition: margin 0.4s;
+ }
+ .header__menu, .header__how__to{
+    margin: 30px 40px 30px;
+    height: 30px;
+    width: 30px;
+ }
+ .header>div>i{
+    font-size: 20px;
+ }
+ .main__container{
+    height: auto;
+    width: 350px;
+ }
+
+ .main__container>h3{
+    color: gray;
+    margin-top: 20px;
+    font-size: 15px;
+ }
+
+ .grid__container{
+    gap: 7.5px;
+    row-gap: 10px;
+ }
+ .button__css{
+    color: white;
+    height: 55.25px;
+    width: 60px;
+    border: none;
+    border-radius: 15%;
+    font-family: nunito;
+    font-size: 2.5em;
+    font-weight: bolder; 
+ }
+ .winner__button{
+    height: 60px;
+    width: 60px;
+}
+ .button__container{
+    height: 60px;
+    width: 60px;
+    border: solid 1px gray ;
+    border-radius: 15%;
+ }
+
+ .footer__container>div>h2,button{
+    font-size: 20px;
+ }
+
+.swap__container{
+    margin-top: 20px;
+}
+ 
+.how-to-play-content {
+    max-width: fit-content;
+    margin: 5% 10%;
+}
+.centered-flex-container {
+    font-size: medium;
+    gap: 0.25rem;
+}
+
+.nav-content{
+    width: 320px;
+    height: 500px;
+    box-shadow: 0 12px 24px rgb(230, 225, 225);
+}
+
+}    
+

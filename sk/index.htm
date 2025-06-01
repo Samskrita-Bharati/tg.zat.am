@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!---------------------------Title(Touch version)------------------------------>
+    <title>स्वस्तिक-पदम् svastika-padam</title>
+    <!---------------------------CSS------------------------------>
+    <link href="./css/style.css" rel="stylesheet">
+    <!---------------------------ICON------------------------------>
+    <link href="/images/icon.svg" rel="icon">
+    <!---------------------------REMIXICONS------------------------------>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.0.1/remixicon.css" integrity="sha512-ZH3KB6wI5ADHaLaez5ynrzxR6lAswuNfhlXdcdhxsvOUghvf02zU1dAsOC6JrBTWbkE1WNDNs5Dcfz493fDMhA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+
+</head>
+<body class="body__container" id="body-container">
+    <div class="all__container" id="all-container">
+        <!---------------------------HEADER------------------------------>
+
+        <div class="header" id="header">
+
+            <!--Icons on the left-->
+            <div class="nav-icon header__menu header__item" id="header-menu">
+                <i class="ri-menu-line ri-xl"></i>
+            </div>
+            
+            <!-- Navigation Bar Modal -->
+            <div class="nav-content" id="nav-content">
+                <span class="close-button" id="nav-close-button">&times;</span>
+                <h2 class="nav-heading">Main Menu</h2>
+                <ul class="nav-list" id="nav-list">
+                    <li>
+                        <a href="#" id="latest-puzzle-link">
+                            <i class="ri-puzzle-line"></i>
+                            Latest Puzzle
+                        </a>
+                    </li>
+                    <li>
+                        <a href="more.htm">
+                            <i class="ri-history-line"></i>
+                            Previous Puzzles
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <ul class="nav-list" id="nav-list">
+                    <li>
+                        <a class="help__button" id="help-button">
+                            <i class="ri-questionnaire-line"></i>
+                            Help
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/sponsors/Samskrita-Bharati/" target="_blank" rel="noopener">
+                            <i class="ri-hand-heart-line"></i>
+                            Support Us
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--Heading-->
+            <h1 class="header__title header__item" id="header-title" >
+                स्वस्तिक-पदम्
+            </h1>
+
+            <!--Icons on the Right-->
+            <div class="header__how__to header__item" id="header-how-to">
+                <i class="ri-question-mark ri-xl"></i>
+            </div>
+            <!-- How to Play Modal -->
+            <div class="how-to-play-modal" id="how-to-play-modal">
+                <div class="how-to-play-content">
+                    <span class="close-button" id="close-button">&times;</span>
+                    <h2>How to Play</h2>
+                    <hr>
+                    <p>Solve the स्वस्तिक-पदम् (svastika-padam) Puzzle in fewest moves possible.</p>
+                    <p>You will earn a star for every move you have remaining once the स्वस्तिक-पदम्  is solved ⭐</p>
+                    <p>Rearrange the letters into the correct words, horizontally and vertically. Drag letters anywhere on the board. The letters will change color to show whether they are in the correct position. The number of moves remaining is displayed below the board.</p>
+                    <hr>
+                    <h3>Color Indicators</h3>
+                    <p>These letters are in the correct place (Green):</p>
+                    <div class="centered-flex-container">
+                        <div class="button__container">
+                            <button type="button" class="button button__css correct__button" draggable="true">P</button>
+                        </div>
+                        <div class="button__container">
+                            <button type="button" class="button button__css correct__button " draggable="true">E</button>
+                        </div>
+                        <div class="button__container">
+                            <button type="button" class="button button__css correct__button" draggable="true">R</button>
+                        </div>
+
+                    </div>
+                    <p>These letters are in the correct row or column (Yellow):</p>
+                    <div class="centered-flex-container">
+                        <div class="button__container">
+                            <button type="button" class="button button__css almostcorrect__button" draggable="true">K</button>
+                        </div>
+                        <div class="button__container">
+                            <button type="button" class="button button__css almostcorrect__button" draggable="true">N</button>
+                        </div>
+                        <div class="button__container">
+                            <button type="button" class="button button__css almostcorrect__button" draggable="true">O</button>
+                        </div>    
+                    </div>    
+                    <p>These letters are not in the correct position (Gray):</p>
+                    <div class="centered-flex-container">
+                        <div class="button__container">
+                            <button type="button" class="button button__css" draggable="true">B</button>
+                        </div>
+                        <div class="button__container">
+                            <button type="button" class="button button__css" draggable="true">M</button>
+                        </div>
+                        <div class="button__container">
+                            <button type="button" class="button button__css" draggable="true">U</button>
+                        </div>
+                    </div>
+                    <hr>
+                    <h3>Special Cases</h3>
+                    <p>Sometimes, when there are multiple instances of the same letter in a word, the algorithm may highlight both or one of them depending on the puzzle.</p>
+                </div>
+            </div>
+        </div>
+
+        <!---------------------------MAIN------------------------------>
+        <div class="main__container" id="main-container">
+
+            <h3 class="SHABADA__number " id="SHABD-number"></h3>
+
+            <div class="grid__container" id="grid-container">
+                <div class="button__container drag__container" id="button-container-1">
+                    <button type="button" class="drag__button button button__css" id="grid-button1" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-2">
+                    <button type="button" class="drag__button button button__css" id="grid-button2" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-3">
+                    <button type="button" class="drag__button button button__css" id="grid-button3" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-4">
+                    <button type="button" class="drag__button button button__css" id="grid-button4" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-5">
+                    <button type="button" class="drag__button button button__css" id="grid-button5" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-6">
+                    <button type="button" class="drag__button button button__css" id="grid-button6" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-7">
+                    <button type="button" class="drag__button button button__css" id="grid-button7" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-8">
+                    <button type="button" class="drag__button button button__css" id="grid-button8" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-9">
+                    <button type="button" class="drag__button button button__css" id="grid-button9" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-10">
+                    <button type="button" class="drag__button button button__css" id="grid-button10" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-11">
+                    <button type="button" class="drag__button button button__css" id="grid-button11" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-12">
+                    <button type="button" class="drag__button button button__css" id="grid-button12" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-13">
+                    <button type="button" class="drag__button button button__css" id="grid-button13" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-14">
+                    <button type="button" class="drag__button button button__css" id="grid-button14" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-15">
+                    <button type="button" class="drag__button button button__css" id="grid-button15" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-16">
+                    <button type="button" class="drag__button button button__css" id="grid-button16" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-17">
+                    <button type="button" class="drag__button button button__css" id="grid-button17" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-18">
+                    <button type="button" class="drag__button button button__css" id="grid-button18" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-19">
+                    <button type="button" class="drag__button button button__css" id="grid-button19" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-20">
+                    <button type="button" class="drag__button button button__css" id="grid-button20" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-21">
+                    <button type="button" class="drag__button button button__css" id="grid-button21" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-22">
+                    <button type="button" class="drag__button button button__css" id="grid-button22" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-23">
+                    <button type="button" class="drag__button button button__css" id="grid-button23" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-24">
+                    <button type="button" class="drag__button button button__css" id="grid-button24" draggable="true"></button>
+                </div>
+                <div class="button__container drag__container" id="button-container-25">
+                    <button type="button" class="drag__button button button__css" id="grid-button25" draggable="true"></button>
+                </div>
+            </div>   
+        </div>
+
+        <!---------------------------FOOTER------------------------------>
+        <div class="footer__container" id="footer-container">
+            <div class="swap__container " id="swap-container">
+                <h2 class="swap__remainin__number" id="swaps-remaining-number"></h2>
+                <h2 class="swap__remaining__words" id="swaps-remaining-words">SWAPS REMAINING</h2>
+            </div>
+            <!-- Win and Lose Message Container -->
+            <div class="message__container" id="message-container">
+                <div class="box">
+                    <h2 class="message" id="message-text"></h2>
+                </div>
+                <div class="button__row">
+                    <button class="retry__button" id="retry-button" onclick="location.reload()">RETRY</button>
+                    <button class="trymore__button" id="trymore-button" onclick="location.href='more.htm'">TRY MORE</button>
+                    <div class="share__container" id="share-container">
+                        <button class="share__button" id="share-button">
+                            <i class="ri-share-line share__icon"></i> 
+                            SHARE
+                        </button>
+                    </div>
+                </div>
+                <div class="copy__message" id="copy-message">Results copied to clipboard!</div>
+
+            </div>
+        </div>
+    </div>
+    <!-- <script src="./index.js"></script> -->
+    <script src="./js/main.js"></script> 
+<script src="./js/data.js"></script> 
+    <script src="./js/GameLogic.js"></script> 
+    <script src="./js/DragDropTouch.js"></script>
+</body>
+</html>
