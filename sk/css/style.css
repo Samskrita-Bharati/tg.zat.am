@@ -371,8 +371,8 @@ h2{
     height: 50px;
     width: 150px;
     margin: 10px;
-    background-color: var(--theme-color);
-    box-shadow: 5px 5px 0 var(--theme-color-dark);  
+    background-color: var(--almost-correct-color);
+    box-shadow: 5px 5px 0 var(--almost-correct-color-dark);  
     border-radius: 7.5%; 
     border: none;
     font-family: nunito;
@@ -406,8 +406,8 @@ h2{
     height: 50px;
     margin: 10px;
     flex:1;
-    background-color: var(--theme-color);
-    box-shadow: 5px 5px 0 var(--theme-color-dark);
+    background-color: var(--almost-correct-color);
+    box-shadow: 5px 5px 0 var(--almost-correct-color-dark);
     border-radius: 7.5%;  
     border: none;
     font-family: 'nunito';
@@ -439,7 +439,7 @@ h2{
 }
 
 .message__box--win {
-    background-color: var(--theme-color);
+    background-color: var(--almost-correct-color);
     color: white;
 }
 
@@ -486,8 +486,8 @@ button:hover{
 }
 
 .correct__button{
-    background-color: var(--correct-color);
-    box-shadow: 0 5px 0 var(--correct-color-dark);    
+    background-color: var(--almost-correct-color-dark);
+    box-shadow: 0 5px 0 var(--almost-correct-color);    
 }
 
 .almostcorrect__button{
