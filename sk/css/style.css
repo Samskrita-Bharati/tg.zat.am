@@ -356,8 +356,8 @@ h2{
     height: 50px;
     max-width: 150px;
     margin: 10px;
-    background-color: var(--theme-color);
-    box-shadow: 5px 5px 0 var(--theme-color-dark);
+    background-color: var(--almost-correct-color);
+    box-shadow: 5px 5px 0 var(--almost-correct-color-dark);
     border-radius: 7.5%;  
     border: none;
     font-family: 'nunito';
@@ -569,7 +569,7 @@ button:hover{
     justify-content: center;
  }
  .header>h1{
-    font-size: 25px;
+    font-size: 15px;
     margin:25px 20px 30px;
     transition: margin 0.4s;
  }
