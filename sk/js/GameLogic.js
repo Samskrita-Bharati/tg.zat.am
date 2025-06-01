@@ -344,14 +344,14 @@ return json.data;
           }
           let currentCharacter = shuffledArray[i].character;
           if (currentCharacter.classList.contains('correct__button')) {
-              shareText += '🟩';
+              shareText += '🟧';//🟩
           } else if (currentCharacter.classList.contains('almostcorrect__button') || currentCharacter.classList.contains('button')) {
-              shareText += '⬛';
+              shareText += '🟨';//⬛
           } else {
               shareText += '⬜';
           }
       }
-      shareText += `\n\nPlay the game at: https://tg.zat.am/sk `;
+      shareText += `\n\nPlay the game at: https://tg.zat.am/sk/index.htm?puzzleNumber=${puzzleNumber} `;
       return shareText;
   }
   
